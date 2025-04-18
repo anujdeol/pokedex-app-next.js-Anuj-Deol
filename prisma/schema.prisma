@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Pokemon {
+  id     Int                     @id @default(autoincrement())
+  name   String                  @unique
+  sprite String
+
+  types  PokemonTypeOnPokemon[] // Connects via join table
+}
+
+model PokemonType {
+  id       Int                     @id @default(autoincrement())
+  name     String                  @unique
+
+  pokemons PokemonTypeOnPokemon[] // Connects via join table
+}
+
+model PokemonTypeOnPokemon {
+  pokemonId Int
+  typeId    Int
+
+  pokemon Pokemon     @relation(fields: [pokemonId], references: [id])
+  type    PokemonType @relation(fields: [typeId], references: [id])
+
+  @@id([pokemonId, typeId])
+}
