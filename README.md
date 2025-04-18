@@ -1,6 +1,25 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+
+## 🚀 Getting Started
+
+Follow the steps below to set up the project and seed the initial data.
+
+
+### 📦 Setup Instructions
+
+1. **Start your SQL Server**  
+   Make sure your SQL Server is running locally or remotely.
+
+2. **Configure Database URL**  
+   Update your `.env` file with the correct database connection string:
+   ```env
+   DATABASE_URL="mysql://username:password@localhost:3306/your_database"
+
+3. **Run Migration & Seed Initial Data Run the following command to apply migrations and seed the database:**
+
+npx prisma migrate dev --name init
+
 
 First, run the development server:
 
